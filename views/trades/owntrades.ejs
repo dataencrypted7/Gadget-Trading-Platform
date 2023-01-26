@@ -1,0 +1,43 @@
+
+<%- include('../partials/header.ejs')%>
+<div class="Trades">
+    <div class="card">
+      <div class="container">
+        <div class = "TradeForm">
+            <h4>Welcome, <%=user.firstName%></h4>
+              <% if(trades.length) { %>
+                <h5>Your Trades: </h5>
+                <p class="m-0">Select one gadget from available list below to trade aganist<strong><%= trade1.name %></strong> </p>
+                <form id="TradeForm">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th scope="col"> </th>
+                        <th scope="col">Trade</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <% trades.forEach(trade =>{ %>
+                      <% if(trade.status == 'Available') {%>
+                        <tr>
+                            <td> <input type='radio' name ="rad" value = "<%= trade._id.toString() %>" > </td>
+                            <td><%=trade.name%> </td>
+                            <td><%=trade.category%> </td>
+                            <td><%=trade.status%> </td>
+                          </tr>
+                       <% } }) %>
+                       <tr>
+                        <button type="submit" formmethod="POST" formaction="/trading">Trade</button>
+                     </tr>
+                  </table>
+                    </form>
+            <% } else { %>
+                      <p>There are no gadgets to trade. Please create gadgets.</p>
+                     <%}%>
+        </div>
+        
+</div>
+</div>
+</div>
+    <%- include('../partials/footer.ejs')%>

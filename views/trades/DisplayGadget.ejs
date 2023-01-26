@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+
+<div class="Trades">
+    <div class="card">
+        <div class="container">
+            <div class="row">
+                <div class="col-25">
+                    <h3><%= trade.name %></h3>
+                    <img src="/images/<%=trade.img%>"   alt="<%=trade.name%>" >
+                </div>
+                <div class="col-50" >
+                    <p>Brand: <%=trade.brand%> <br>
+                        Category: <%=trade.category%>
+                    </p>
+                    <h3>Details: </h3>
+                       <p><%=trade.details%> </p>
+                    <!--  <input type="button" value="Buy!">  -->
+                </div>
+                <div class="col-75">
+                  <%  if(!userid){%>
+                        <form >
+                            <p>Please login to access the Gadget?</p>
+                                <button disabled>Trade </button>
+                                <button disabled>Watch </button>
+                                <button type="submit" formmethod="GET" formaction="/trades">Home</button>
+                            </form>  
+                  <%  } else if(userid == trade.author._id.toString()) {%>
+                        <form >
+                            <button  type="submit" formmethod="GET" formaction="/trades/<%=trade.id%>/edit">Edit </button>
+                            <button class="buttoncancel" type="submit" formmethod="POST" formaction="/trades/<%=trade.id%>?_method=DELETE">Delete </button>
+                            <button type="submit" formmethod="GET" formaction="/trades">Home</button>
+                        </form> 
+                    <%} else { %>
+                                <form >
+                                    <p>Are you interested in this Gadget?</p>
+                                     <% if(trading){ %>
+                                     <button type="submit" formmethod="GET" formaction="/trading/<%=trade.id%>" >Trade </button>
+                                    <% } else { %>
+                                        <button disabled>Trade </button>
+                                          <% } %>
+                                     <% if(watching) { %>
+                                     <button type="submit", formmethod="POST" formaction="/trades/<%=trade.id%>/unwatch?_method=PUT" >unWatch </button>
+                                     <% } else { %>
+                                     <button type="submit", formmethod="POST" formaction="/trades/<%=trade.id%>/watch?_method=PUT" >Watch </button>
+                                    <% } %>
+                                         
+                                     <button  type="submit" formmethod="GET" formaction="/trades">Home</button>
+                                 </form> 
+                              <%   } %>
+                   
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<%- include('../partials/footer') %>

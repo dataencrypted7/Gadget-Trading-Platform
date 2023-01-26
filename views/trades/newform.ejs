@@ -1,0 +1,49 @@
+<%- include('../partials/header') %>
+<div class="Trades">
+    <div class="card">
+        <div class="container">
+            <div class="row">
+                <h3 class="m-0">Create New Gadget</h3>
+                   <div class="col-25">
+                    <img src="/images/logomain.png"  alt="gadget" />
+                   </div>
+                    <div class="col-50" >
+                        <form class="TradeForm" method="POST" action="/trades">
+                        <table>
+                            <tr>
+                                <td class="td40"><label for="category" >Category: </label></td>
+                                <td class="td60"><input type="text" id="category" name="category" placeholder="Category" required></td>
+                            </tr>
+                            <tr>
+                                <td class="td40"><label for="brand" >Brand: </label></td>
+                                <td class="td60"><input type="text" id="brand" name="brand" placeholder="Brand" required></td>
+                            </tr>
+                            <tr>
+                                <td class="td40"><label for="name" >Product Name: </label></td>
+                                <td class="td60"><input type="text" id="name" name="name" placeholder="Product name" required></td>
+                            </tr>
+                                                    
+                            <tr>
+                                <td class="td40"><label for="details" >Details: </label></td>
+                                <td class="td60"><textarea id="details" name="details" minlength="8" placeholder="details" required></textarea> </td>
+                               </tr>
+                            <tr>
+                                <td class="td40"><label for="img">Image URL:</label></td>
+                                 <td class="td60"> <input id="img" type="text" placeholder="picture.png" name="img" /></td>
+                              </tr>
+                            <tr>
+                                <td class="td60" colspan="2" ><button class="button" type="submit">Create Gadget</button></td>
+                            </tr>
+                        </table>  
+                    </form>
+                    </div>
+                
+              
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer')%>
+

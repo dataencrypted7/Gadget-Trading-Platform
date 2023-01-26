@@ -1,0 +1,117 @@
+
+<%- include('../partials/header.ejs')%>
+<div class="Trades">
+    <div class="card">
+      <div class="container">
+      
+            <h2>Welcome, <%=user.firstName%> </h2>
+              <% if(trades.length) { %>
+                <table>
+                    <colgroup>
+                      <col class="td40"/>
+                      <col class="tt15"/>
+                      <col class="tt15"/>
+                      <col class="td40"/>
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th colspan = "4"> <h6 >Your Trades:</h6> </th>
+                      </tr>
+                      <tr>
+                        <th scope="col">Trade</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                     </thead>
+                    <% trades.forEach(trade =>{ %>
+                      <tr>
+                        <td><%=trade.name%> </td>
+                        <td><%=trade.category%> </td>
+                        <td><%=trade.status%> </td>
+                        <% if(trade.status == "Available" || trade.status == "Traded") {%>
+                          <td><form class ="TradeForm">
+                            <button type="submit" formmethod="GET" formaction="/trades/<%= trade.id %>/edit">Update</button>
+                            <button type="submit" formmethod="POST" formaction="/trades/<%= trade.id %>?_method=DELETE" class="buttoncancel">Delete</button>
+                        </form</td>
+                        <% } else { %>
+                          <td><form class ="TradeForm">
+                            <button type="submit" formmethod="GET" formaction="/trades/<%= trade.id %>/edit" >Update</button>
+                            <button type="submit" formmethod="POST" formaction="/trades/<%= trade.id %>?_method=DELETE" class="button buttoncancel">Delete</button>
+                            <button type="submit" formmethod="GET" formaction="/trading/<%= trade.id %>/manage" >Manage Offer</button>
+                        </form</td>
+                        <% } %>
+                      </tr>
+                    <% }); %>
+                  </table>  
+              <% } else { %>
+                      <p>You have not yet created any gadgets.</p>
+                     <%}%>
+        
+          <% if(watchedTrades.length) { %>
+              <table>
+                <colgroup>
+                  <col class="td40"/>
+                  <col class="tt15"/>
+                  <col class="tt15"/>
+                  <col class="td40"/>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th colspan = "4"> <h6 >Your Watched Trades:</h6> </th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Trade</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                 </thead>
+                <% watchedTrades.forEach(watch =>{ %>
+                  <tr>
+                    <td><%=watch.name%> </td>
+                    <td><%=watch.category%> </td>
+                    <td><%=watch.status%> </td>
+                    <td><form class="TradeForm" >
+                        <button type="submit" formmethod="POST" formaction="/trades/<%= watch.id %>/unwatch?_method=PUT" >Unwatch</button>
+                    </form</td>
+                  </tr>
+                  <% }) %>
+            <% }; %>
+        
+          <% if(trading.length) { %>
+            <table>
+                <colgroup>
+                  <col class="td40"/>
+                  <col class="tt15"/>
+                  <col class="tt15"/>
+                  <col class="td40"/>
+                </colgroup>
+                <thead>
+                 <tr>
+                    <th colspan = "4"> <h6 >Your Offers:</h6></th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Trade</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                 </thead>
+                <% trading.forEach(t =>{ %>
+                  <tr>
+                    <td><%=t.tradeitem.name%> </td>
+                    <td><%=t.tradeitem.category%> </td>
+                    <td><%=t.tradeitem.status%> </td>
+                    <td><form class="TradeForm" >
+                        <button type="submit" formmethod="POST" formaction="/trading/<%= t.tradeitem._id %>/manage/cancel?trade2=<%=t.tradeitem.tradeitem._id %>"  class="buttoncancel">Cancel Offer</button>
+                    </form</td>
+                  </tr>
+                  <% }) %>
+            <% }; %>
+       
+
+</div>
+</div>
+</div>
+    <%- include('../partials/footer.ejs')%>

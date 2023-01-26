@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+<div class="Trades">
+    <div class="card">
+        <div class="container">
+           
+            <form class = "TradeForm">
+            <table class="col3" boarder-width="2px" boarder-space="2px">
+                <colgroup>
+                    <col class="td25"/>
+                    <col class="td25"/>
+                    <col class="td25"/>
+                  </colgroup>
+                <thead boarder-width="2px" boarder-space="2px">
+                    <tr>
+                        <th colspan = "3">
+                    <p class="footer_left"><h4>Manage Trading 
+                        <a class="footer-content-right" href="/users/profile"><img src="/images/close.jpg" class="icon-style" alt="X"></a>
+                        </h4></p>
+                        </th>
+                </thead>
+                
+               <tr>
+                <td boarder-width="2px" boarder-space="2px"> 
+                    <figure>
+                        <figcaption><%=trade1.name%></figcaption>
+                        <img class="imgcol3" src="/images/<%=trade1.img%>" alt="<%=trade1.name%>" >
+                    </figure>
+                    </td>
+                      <td boarder-width="2px" boarder-space="2px">
+                        <figure>
+                            <figcaption><%=trade2.name%></figcaption>
+                            <img class="imgcol3" src="/images/<%=trade2.img%>" alt="<%=trade2.name%>" </td>
+                        </figure>
+                      <% if(owner) { %>
+                        <td boarder-width="2px" boarder-space="2px"> <button type="submit" formmethod="POST" formaction="/trading/<%= trade1.id %>/manage/cancel?trade2=<%=trade2.id %>" class="buttoncancel">Cancel Offer</button> 
+                    <%  } else { %>
+                        <td boarder-width="2px" boarder-space="2px"> <button type="submit" formmethod="POST" formaction="/trading/<%= trade1.id %>/manage/accept?trade2=<%=trade2.id %>" >Accept</button>
+                            <button type="submit" formmethod="POST" formaction="/trading/<%= trade1.id %>/manage/cancel?trade2=<%=trade2.id %>" class="buttoncancel">Reject</button>
+                    <%  } %>
+                    </td>
+                  </tr>
+              </table>
+            </form>
+              
+            
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer')%>

@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+<div class="Trades">
+    <div class="card">
+        <div class="container">
+            <% if(sortedResult){ for(let key in sortedResult) 
+                { let catg =sortedResult[key]; %> 
+                <h4> <%=key%> </h4>
+                <%catg.forEach(item =>{ %>
+                    <ul>
+                        <li>
+                            <a href="/trades/<%=item.id%>">
+                            <p>  <%=item.name%> </p>
+                            </a>
+                        </li>
+                    </ul>
+            <% }); }} else { %>
+                        <p>There are no gadgets to display.</p>
+                       <%}%>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer.ejs')%>
+
+
+

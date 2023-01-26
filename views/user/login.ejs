@@ -1,0 +1,29 @@
+<%-include('../partials/header')%>
+
+<div class="Trades">
+    <div class="card">
+      <div class="container">
+        <div class="user">
+            <h1 class="m-0">Welcome to Gadgetsy Trade!</h1>
+    <p class="m-0">Please enter your username and password: </p>
+        <form action = '/users/login' method = 'POST'>
+          <table>
+              <tr>
+                  <td><label for="email">Username</label></td>
+                  <td><input type="email" id="email" name="email" placeholder="email address" required></td>
+              </tr>
+              <tr>
+                  <td><label for="password">Password</label></td>
+                  <td><input type="password" id="password" name="password" minlength="8" maxlength="64" required></td>
+              </tr>
+              
+              <tr>
+                  <td colspan="2" class = "align-right"><button>Login</button></td>
+              </tr>
+          </table>        
+      </form>
+      </div>
+    </div>
+    </div>
+    </div>
+    <%-include('../partials/footer')%>

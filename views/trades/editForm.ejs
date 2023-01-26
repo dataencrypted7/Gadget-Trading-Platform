@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+<div class="Trades">
+    <div class="card">
+        <div class="container">
+            <div class="row">
+                <h2>Edit Gadget</h2>
+                <div class="col-25">
+                    <img src="/images/<%=item.img%>" alt="<%=item.name%>" >
+                </div>
+                <div class="col-50" >
+                    <form class= "TradeForm" >
+                        <table>
+                            <tr>
+                                <td class="td40><label for="category" >Category </label></td>
+                                <td class="td60"><input type="text" id="category" name="category" value = "<%= item.category%>" required></td>
+                            </tr>
+                            <tr>
+                                <td class="td40><label for="brand" >Brand </label></td>
+                                <td class="td60"><input type="text" id="brand" name="brand" value = "<%= item.brand%>" required></td>
+                            </tr>
+                            <tr>
+                                <td class="td40><label for="name" >Name </label></td>
+                                <td class="td60"><input type="text" id="name" name="name" value = "<%= item.name%>" required></td>
+                            </tr>
+                                                     
+                            <tr>
+                                <td class="td40><label for="details" >Details </label></td>
+                                <td class="td60"><textarea id="details" name="details" minlength="8" required><%= item.details%></textarea> </td>
+                               </tr>
+                               <tr>
+                                <td class="td40"><label for="img">Image URL:</label></td>
+                                 <td class="td60"> <input id="img" type="text" value="<%= item.img %>"  name="img" /></td>
+                              </tr>
+                            <tr>
+                            <tr>
+                                <td colspan = "2" align="right">
+                                    <button type="submit" formmethod="POST" formaction="/trades/<%=item.id %>?_method=PUT">Update</button>
+                                    <a href="/trades"><img src="/images/close.jpg" class="buttonicon" alt="X"></a>
+                                 </td>
+                                </tr>
+                        </table>    
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer')%>

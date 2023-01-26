@@ -1,0 +1,1 @@
+# Gadget-Trading-Platform
